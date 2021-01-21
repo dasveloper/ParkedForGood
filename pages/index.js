@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export default function Home(props) {
   return (
     <div className={styles.container}>
       <Head>
@@ -10,6 +10,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
+        {JSON.stringify(props, null, 2)}
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
@@ -63,3 +64,7 @@ export default function Home() {
     </div>
   )
 }
+Home.getInitialProps = async ({ req }) => {
+  const subdomain = req.headers.host.split('.')[0];
+  return { subdomain };
+};
