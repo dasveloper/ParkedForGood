@@ -1,0 +1,25 @@
+{
+  "extends": ["next/core-web-vitals", "airbnb"],
+  "settings": {
+    "import/resolver": {
+      "alias": [
+          ["@lib", "./lib"]
+      ]
+    }
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off", // Needed to allow .js pages/components
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }], // Needed to allow .js pages/components
+    "no-alert": "off", // Needed for example "notifications"
+    "jsx-a11y/anchor-is-valid": "off", // Needed too allow Next Links
+    "import/no-extraneous-dependencies": ["error", {"devDependencies": true}], // Needed too allow prop-types reference
+    "react/jsx-props-no-spreading": "off", // Needed too allow App "pageProps" to be spread
+    "react/prop-types": "off", // Leaving proptypes off for example purposes 
+    "no-underscore-dangle": "off", // User to allow Mongoose _id property in code
+    "max-len": "off", // Max line length often conflicts with arrow functions see https://github.com/airbnb/javascript/issues/1532
+    "jsx-a11y/label-has-associated-control": "off", // Formik Field not seen as input so throws lint error
+    "import/prefer-default-export": "off", // Allow named export for functions
+    "react/function-component-definition": "off", // Allow using array function components
+    "import/no-mutable-exports": "off" // Allow exporting Prisma initialization
+  }
+}
