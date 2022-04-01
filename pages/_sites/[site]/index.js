@@ -1,5 +1,4 @@
 import DefaultErrorPage from 'next/error';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 const Site = ({ workspace }) => {
@@ -20,32 +19,32 @@ const Site = ({ workspace }) => {
   );
 };
 
-export const getStaticPaths = async () => {
-  const paths = await getWorkspacePaths();
-  return {
-    paths,
-    fallback: true,
-  };
-};
+// export const getStaticPaths = async () => {
+//   const paths = await getWorkspacePaths();
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// };
 
-export const getStaticProps = async ({ params }) => {
-  const { site } = params;
-  const siteWorkspace = await getSiteWorkspace(site, site.includes('.'));
-  let workspace = null;
+// export const getStaticProps = async ({ params }) => {
+//   const { site } = params;
+//   const siteWorkspace = await getSiteWorkspace(site, site.includes('.'));
+//   let workspace = null;
 
-  if (siteWorkspace) {
-    const { host } = new URL(process.env.APP_URL);
-    workspace = {
-      domains: siteWorkspace.domains,
-      name: siteWorkspace.name,
-      hostname: `${siteWorkspace.slug}.${host}`,
-    };
-  }
+//   if (siteWorkspace) {
+//     const { host } = new URL(process.env.APP_URL);
+//     workspace = {
+//       domains: siteWorkspace.domains,
+//       name: siteWorkspace.name,
+//       hostname: `${siteWorkspace.slug}.${host}`,
+//     };
+//   }
 
-  return {
-    props: { workspace },
-    revalidate: 10,
-  };
-};
+//   return {
+//     props: { workspace },
+//     revalidate: 10,
+//   };
+// };
 
 export default Site;

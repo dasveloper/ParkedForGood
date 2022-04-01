@@ -1,15 +1,17 @@
-import Link from "next/link"
-import { signIn, signOut, useSession } from "next-auth/react"
-import styles from "./header.module.css"
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import Link from 'next/link';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import styles from './header.module.css';
 
 export default function Header() {
-  const { data: session, status } = useSession()
-  const loading = status === "loading"
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
 
   return (
     <header>
-        <noscript>
-        <style>{`.nojs-show { opacity: 1; top: 0; }`}</style>
+      <noscript>
+        <style>{'.nojs-show { opacity: 1; top: 0; }'}</style>
       </noscript>
       <div className={styles.signedInStatus}>
         <p
@@ -22,16 +24,17 @@ export default function Header() {
               <span className={styles.notSignedInText}>
                 You are not signed in
               </span>
-              <a
-                href={`/api/auth/signin`}
-                className={styles.buttonPrimary}
-                onClick={(e) => {
-                  e.preventDefault()
-                  signIn()
-                }}
-              >
-                Sign in
-              </a>
+              <Link href="/api/auth/signin">
+                <a
+                  className={styles.buttonPrimary}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    signIn();
+                  }}
+                >
+                  Sign in
+                </a>
+              </Link>
             </>
           )}
           {session?.user && (
@@ -47,16 +50,17 @@ export default function Header() {
                 <br />
                 <strong>{session.user.email ?? session.user.name}</strong>
               </span>
-              <a
-                href={`/api/auth/signout`}
-                className={styles.button}
-                onClick={(e) => {
-                  e.preventDefault()
-                  signOut()
-                }}
-              >
-                Sign out
-              </a>
+              <Link href="/api/auth/signout">
+                <a
+                  className={styles.button}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    signOut();
+                  }}
+                >
+                  Sign out
+                </a>
+              </Link>
             </>
           )}
         </p>
@@ -76,5 +80,5 @@ export default function Header() {
         </ul>
       </nav>
     </header>
-  )
+  );
 }
